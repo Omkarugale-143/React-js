@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
-import Dashboard from "./scenes/dashboard";
+// import Dashboard from "./scenes/dashboard";\
+import Dashboard from "./scenes/dash";
+// import Dashboard from "./scenes/dashboard/landingpage";
 import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
-import SignInSide from "./scenes/landingPage";
+// import SignInSide from "./scenes/landingPage";
+// import LandingPage from "./scenes/Landingpage/landingpage"; 
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -19,28 +22,18 @@ import Calendar from "./scenes/calendar/calendar";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
+  const [isSidebar, setIsSidebar] = useState(false);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
+          <Sidebar isSidebar={isSidebar} />
           <main className="content">
-            {/* <SignInSide/> */}
-
+            <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
-            <Route path="/Sidebar" element={<SignInSide/>} />
-            </Routes>
-
-            <Topbar setIsSidebar={setIsSidebar}/>
-            <Routes>
-              <Route
-                path="/Sidebar"
-                element={<Sidebar isSidebar={isSidebar} />}
-              />
-
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />
